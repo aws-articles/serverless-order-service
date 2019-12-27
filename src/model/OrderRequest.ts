@@ -5,10 +5,12 @@ export class OrderRequest {
     }
 
     isViewOrder(): boolean {
-        return true;
+        return this.event.httpMethod === "GET" &&
+            this.event.path === "/orders" &&
+            this.event.pathParameters.orderId != null;
     }
 
     orderId(): string {
-        return "";
+        return this.event.pathParameters.orderId;
     }
 }
