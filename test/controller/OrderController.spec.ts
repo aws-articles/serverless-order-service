@@ -1,9 +1,8 @@
 import {OrderController} from "../../src/controller/OrderController";
-import {OrderRequest} from "../../src/model/OrderRequest";
 import {HttpStatus} from "../../src/model/ModelAndResponseStatus";
 import {OrderService} from "../../src/service/OrderService";
 import {Order} from "../../src/model/Order";
-import {APIGatewayEvent} from "aws-lambda";
+import {orderRequest} from "../fixture/OrderRequestFixture";
 
 import * as sinon from "sinon";
 
@@ -32,23 +31,3 @@ test("should return an order given a request to find an order by id", async () =
 afterEach(() => {
     sinon.restore();
 });
-
-const orderRequest = (id: string, path: string = "/orders") => {
-    const apiGatewayEvent: APIGatewayEvent = {
-        httpMethod: "GET",
-        path: path,
-        pathParameters: {
-            "orderId": id
-        },
-        body: null,
-        isBase64Encoded: false,
-        headers: {},
-        multiValueHeaders: {},
-        queryStringParameters: {},
-        multiValueQueryStringParameters: {},
-        stageVariables: {},
-        requestContext: null,
-        resource: ""
-    };
-    return new OrderRequest(apiGatewayEvent);
-};
