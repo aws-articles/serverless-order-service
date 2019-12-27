@@ -13,6 +13,8 @@
     "typescript": "^3.7.4"
   },
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.39"
+    "@types/aws-lambda": "^8.10.39",
+    "@types/aws-sdk": "^2.7.0",
+    "aws-sdk": "latest"
   }
 }
