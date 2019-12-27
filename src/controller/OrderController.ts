@@ -9,13 +9,13 @@ export class OrderController {
         this.orderService = new OrderService();
     }
 
-    handle(orderRequest: OrderRequest) {
+    async handle(orderRequest: OrderRequest) {
         if (orderRequest.isViewOrder()) {
-            return this.findAnOrderBy(orderRequest.orderId())
+            return await this.findAnOrderBy(orderRequest.orderId())
         }
     }
 
-    private findAnOrderBy(id: string): Order {
-        return this.orderService.findAnOrderBy(id);
+    private async findAnOrderBy(id: string): Promise<Order> {
+        return await this.orderService.findAnOrderBy(id);
     }
 }

@@ -7,7 +7,7 @@ export class OrderService {
         this.repository = new OrderRepository();
     }
 
-    findAnOrderBy(id: string) {
-        return this.repository.findAnOrderBy(id);
+    async findAnOrderBy(id: string) {
+        return await this.repository.findAnOrderBy(id);
     }
 }
