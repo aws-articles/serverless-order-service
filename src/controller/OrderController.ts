@@ -14,7 +14,7 @@ export class OrderController {
             const order = await this.findAnOrderBy(orderRequest.orderId());
             return new ModelAndResponseStatus(order, HttpStatus.OK)
         }
-        return null;
+        return new ModelAndResponseStatus(null, HttpStatus.NOT_FOUND);
     }
 
     private async findAnOrderBy(id: string) {
