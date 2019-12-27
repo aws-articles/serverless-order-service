@@ -15,6 +15,12 @@ test("should return Ok as the response status given a request to find an order b
     expect(modelAndResponseStatus.status).toEqual(HttpStatus.OK);
 });
 
+test("should return Not Found as the response status given a request is not for find an order by id", async () => {
+    const modelAndResponseStatus = await new OrderController().handle(orderRequest("id-100", "/test"));
+
+    expect(modelAndResponseStatus.status).toEqual(HttpStatus.NOT_FOUND);
+});
+
 test("should return an order given a request to find an order by id", async () => {
     sinon.stub(OrderService.prototype, "findAnOrderBy").callsFake(() => new Order("id-100", 1445));
 
@@ -27,10 +33,10 @@ afterEach(() => {
     sinon.restore();
 });
 
-const orderRequest = (id: string) => {
+const orderRequest = (id: string, path: string = "/orders") => {
     const apiGatewayEvent: APIGatewayEvent = {
         httpMethod: "GET",
-        path: "/orders",
+        path: path,
         pathParameters: {
             "orderId": id
         },
