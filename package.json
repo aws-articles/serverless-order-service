@@ -11,5 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "typescript": "^3.7.4"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.39"
   }
 }
