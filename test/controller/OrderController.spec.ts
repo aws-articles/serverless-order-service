@@ -1,9 +1,9 @@
 import {OrderController} from "../../src/controller/OrderController";
 import {OrderRequest} from "../../src/model/OrderRequest";
-import {APIGatewayEvent} from "aws-lambda";
 import {HttpStatus} from "../../src/model/ModelAndResponseStatus";
 import {OrderService} from "../../src/service/OrderService";
 import {Order} from "../../src/model/Order";
+import {APIGatewayEvent} from "aws-lambda";
 
 import * as sinon from "sinon";
 
