@@ -2,12 +2,11 @@ import {DocumentClient} from "aws-sdk/clients/dynamodb";
 
 export class Order {
 
-    private constructor(private readonly orderId: string,
-                        private readonly amount: number,
-                        private readonly orderDate: Date) {
+    constructor(private readonly orderId: string,
+                private readonly amount: number) {
     }
 
     static from(item: DocumentClient.AttributeMap): Order {
-        return new Order(item.orderId, item.amount, item.orderDate);
+        return new Order(item.orderId, item.amount);
     }
 }

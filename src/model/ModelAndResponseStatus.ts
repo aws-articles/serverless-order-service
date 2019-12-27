@@ -1,5 +1,5 @@
 export class ModelAndResponseStatus {
-    constructor(private readonly model: any, private readonly status: HttpStatus) {
+    constructor(readonly model: any, readonly status: HttpStatus) {
     }
 
     serialize() {
