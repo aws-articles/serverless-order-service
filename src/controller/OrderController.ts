@@ -1,6 +1,6 @@
 import {OrderRequest} from "../model/OrderRequest";
-import {Order}        from "../model/Order";
 import {OrderService} from "../service/OrderService";
+import {HttpStatus, ModelAndResponseStatus} from "../model/ModelAndResponseStatus";
 
 export class OrderController {
     private orderService: OrderService;
@@ -9,13 +9,15 @@ export class OrderController {
         this.orderService = new OrderService();
     }
 
-    async handle(orderRequest: OrderRequest) {
+    async handle(orderRequest: OrderRequest): Promise<ModelAndResponseStatus> {
         if (orderRequest.isViewOrder()) {
-            return await this.findAnOrderBy(orderRequest.orderId())
+            const order = await this.findAnOrderBy(orderRequest.orderId());
+            return new ModelAndResponseStatus(order, HttpStatus.OK)
         }
+        return null;
     }
 
-    private async findAnOrderBy(id: string): Promise<Order> {
+    private async findAnOrderBy(id: string) {
         return await this.orderService.findAnOrderBy(id);
     }
 }
