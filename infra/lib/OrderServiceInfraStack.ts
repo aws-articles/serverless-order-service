@@ -1,6 +1,6 @@
 import cdk = require('@aws-cdk/core');
 
-export class InfraStack extends cdk.Stack {
+export class OrderServiceInfraStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
