@@ -6,7 +6,7 @@ export class OrderServiceInfraStack extends Stack {
         super(scope, id, props);
 
         const functionProperties: FunctionProps = {
-            code: Code.fromAsset("../src"),
+            code: Code.fromAsset("../dist"),
             handler: "handler.ordersHandler",
             runtime: Runtime.NODEJS_10_X,
             functionName: "order-service-function"

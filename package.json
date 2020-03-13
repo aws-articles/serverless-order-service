@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest test/**"
+    "test": "jest test/**",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/node": "^13.9.1",
     "typescript": "^3.7.4"
   },
   "devDependencies": {
