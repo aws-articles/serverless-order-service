@@ -11,7 +11,7 @@ export class Response<T> {
     }
 
 
-    serialize() {
+    get() {
         return this.body === null ? {"statusCode": this.status} : {
             "statusCode": this.status,
             "body": JSON.stringify(this.body)
