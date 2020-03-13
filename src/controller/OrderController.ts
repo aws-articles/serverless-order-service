@@ -11,7 +11,7 @@ export class OrderController {
     }
 
     async handle(orderRequest: OrderRequest): Promise<Response<Order | unknown>> {
-        if (orderRequest.isViewOrder()) {
+        if (orderRequest.isAGetOrder()) {
             const order = await this.findAnOrderBy(orderRequest.orderId());
             return Response.ok<Order>(HttpStatus.OK, order)
         }

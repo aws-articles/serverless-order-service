@@ -4,7 +4,7 @@ export class OrderRequest {
     constructor(private readonly event: APIGatewayEvent) {
     }
 
-    isViewOrder(): boolean {
+    isAGetOrder(): boolean {
         return this.event.httpMethod === "GET" &&
             this.event.path === "/orders" &&
             this.event.pathParameters.orderId != null;
