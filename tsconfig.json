@@ -6,5 +6,6 @@
     "target": "es6",
     "outDir": "dist",
     "inlineSourceMap": true
-  }
+  },
+  "exclude": ["infra", "test"]
 }
