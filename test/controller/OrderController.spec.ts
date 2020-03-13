@@ -1,5 +1,5 @@
 import {OrderController} from "../../src/controller/OrderController";
-import {HttpStatus} from "../../src/model/ModelAndResponseStatus";
+import {HttpStatus} from "../../src/model/Response";
 import {OrderService} from "../../src/service/OrderService";
 import {Order} from "../../src/model/Order";
 import {orderRequest} from "../fixture/OrderRequestFixture";
@@ -25,7 +25,7 @@ test("should return an order given a request to find an order by id", async () =
 
     const modelAndResponseStatus = await new OrderController().handle(orderRequest("id-100"));
 
-    expect(modelAndResponseStatus.model).toEqual(new Order("id-100", 1445));
+    expect(modelAndResponseStatus.body).toEqual(new Order("id-100", 1445));
 });
 
 afterEach(() => {
