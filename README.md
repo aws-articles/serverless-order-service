@@ -6,7 +6,7 @@ Serverless is a paradigm which is built on top of following tenets -
 3. I pay only the requests served
 4. Disaster recovery and High availability is built into the system
 
-*serverless-order-service* is the backing repository for the my article series on serverless which includes developing a serverless application, testing (or integration testing) a serverless application and finally deploying a serverless application.
+*serverless-order-service* is the backing repository for my article <a href="https://tech-lessons.in/beginning-serverless-journey">series</a> on serverless which includes developing a serverless application, testing (or integration testing) a serverless application and finally deploying a serverless application.
 
 <h3>AWS Services leveraged</h3>
 
@@ -18,7 +18,7 @@ serverless-order-service includes the following serverless components -
 
 <h3>Tech Stack</h3>
 
-serverless-order-service includes the following technology -
+Tech Stack for serverless-order-service includes the following -
 
 - Typescript for building AWS Lambda
 - Localstack for integration testing
