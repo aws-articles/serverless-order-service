@@ -3,7 +3,7 @@ import {GetItemInput} from "aws-sdk/clients/dynamodb";
 import {Order}        from "../model/Order";
 
 const dynamoDb = new DynamoDB.DocumentClient({
-    "region": "us-east-1"
+    "region": "ap-south-1"
 });
 
 export class OrderRepository {
