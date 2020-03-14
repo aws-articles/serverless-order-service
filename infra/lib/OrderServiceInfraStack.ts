@@ -9,6 +9,7 @@ import {PrimaryKey} from "./dynamodb/PrimaryKey";
 import {PartitionKey} from "./dynamodb/PartitionKey";
 import {LambdaPublicRestApiProperties} from "./restapi/public/LambdaPublicRestApiProperties";
 import {LambdaBackedPublicRestApi} from "./restapi/public/LambdaBackedPublicRestApi";
+import {HttpMethod} from "./restapi/public/HttpMethod";
 
 export class OrderServiceInfraStack extends Stack {
     constructor(scope: Construct, id: string, props?: StackProps) {
@@ -16,8 +17,9 @@ export class OrderServiceInfraStack extends Stack {
 
         const ordersFunction = this.ordersFunction();
         const ordersTable = this.ordersTable();
-        this.lambdaBackedPublicRestApi(ordersFunction);
+        const restApi = this.lambdaBackedPublicRestApi(ordersFunction);
 
+        restApi.addEndpoint("orders/{orderId}", HttpMethod.GET);
         ordersTable.grantReadData(ordersFunction);
     }
 
