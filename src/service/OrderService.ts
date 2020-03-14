@@ -8,6 +8,7 @@ export class OrderService {
     }
 
     async findAnOrderBy(id: string) {
+        console.log(`Findind an order by order id ${id}`);
         return await this.repository.findAnOrderBy(id);
     }
 }
