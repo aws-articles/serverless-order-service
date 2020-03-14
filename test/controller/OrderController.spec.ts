@@ -9,23 +9,23 @@ import * as sinon from "sinon";
 test("should return Ok as the response status given a request to find an order by id", async () => {
     sinon.stub(OrderService.prototype, "findAnOrderBy").callsFake(() => sinon.mock(Order));
 
-    const modelAndResponseStatus = await new OrderController().handle(orderRequest("id-100"));
+    const response = await new OrderController().handle(orderRequest("id-100", "/orders/id-100"));
 
-    expect(modelAndResponseStatus.status).toEqual(HttpStatus.OK);
+    expect(response.status).toEqual(HttpStatus.OK);
 });
 
 test("should return Not Found as the response status given a request is not for find an order by id", async () => {
-    const modelAndResponseStatus = await new OrderController().handle(orderRequest("id-100", "/test"));
+    const response = await new OrderController().handle(orderRequest("id-100", "/test/id-100"));
 
-    expect(modelAndResponseStatus.status).toEqual(HttpStatus.NOT_FOUND);
+    expect(response.status).toEqual(HttpStatus.NOT_FOUND);
 });
 
 test("should return an order given a request to find an order by id", async () => {
     sinon.stub(OrderService.prototype, "findAnOrderBy").callsFake(() => new Order("id-100", 1445));
 
-    const modelAndResponseStatus = await new OrderController().handle(orderRequest("id-100"));
+    const response = await new OrderController().handle(orderRequest("id-100"));
 
-    expect(modelAndResponseStatus.body).toEqual(new Order("id-100", 1445));
+    expect(response.body).toEqual(new Order("id-100", 1445));
 });
 
 afterEach(() => {

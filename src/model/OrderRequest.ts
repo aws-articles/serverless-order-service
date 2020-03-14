@@ -6,7 +6,7 @@ export class OrderRequest {
 
     isAGetOrder(): boolean {
         return this.event.httpMethod === "GET" &&
-            this.event.path === "/orders" &&
+            this.event.path.startsWith("/orders") &&
             this.event.pathParameters.orderId != null;
     }
 
