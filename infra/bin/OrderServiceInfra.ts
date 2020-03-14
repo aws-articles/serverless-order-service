@@ -4,4 +4,4 @@ import cdk = require('@aws-cdk/core');
 import { OrderServiceInfraStack } from '../lib/OrderServiceInfraStack';
 
 const app = new cdk.App();
-new OrderServiceInfraStack(app, 'InfraStack');
+new OrderServiceInfraStack(app, 'OrderServiceStack');
