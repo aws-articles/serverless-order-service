@@ -1,6 +1,6 @@
-<h3>Serverless Order Serviced</h3>
+<h3>Serverless Order Service</h3>
 
-Serverless is a paradigm which is built on the following tenets -
+Serverless is a paradigm which is built on top of following tenets -
 1. I don't have to provision and manage servers
 2. I don't have to pay for being idol
 3. I pay only the requests served
