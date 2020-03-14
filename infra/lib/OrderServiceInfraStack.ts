@@ -7,13 +7,18 @@ import {DynamoTable} from "./dynamodb/DynamoTable";
 import {DynamoTableProperties} from "./dynamodb/DynamoTableProperties";
 import {PrimaryKey} from "./dynamodb/PrimaryKey";
 import {PartitionKey} from "./dynamodb/PartitionKey";
+import {LambdaPublicRestApiProperties} from "./restapi/public/LambdaPublicRestApiProperties";
+import {LambdaBackedPublicRestApi} from "./restapi/public/LambdaBackedPublicRestApi";
 
 export class OrderServiceInfraStack extends Stack {
     constructor(scope: Construct, id: string, props?: StackProps) {
         super(scope, id, props);
 
-        this.ordersFunction();
-        this.ordersTable();
+        const ordersFunction = this.ordersFunction();
+        const ordersTable = this.ordersTable();
+        this.lambdaBackedPublicRestApi(ordersFunction);
+
+        ordersTable.grantReadData(ordersFunction);
     }
 
     private ordersFunction() {
@@ -33,5 +38,13 @@ export class OrderServiceInfraStack extends Stack {
                     AttributeType.STRING)
             ))
         );
+    }
+
+    private lambdaBackedPublicRestApi(lambda: Node10LambdaFunction) {
+        return new LambdaBackedPublicRestApi(this, new LambdaPublicRestApiProperties(
+            "orders-api",
+            "dev",
+            lambda
+        ));
     }
 }
