@@ -1,10 +1,8 @@
-import {DynamoDB} from "aws-sdk"
 import {GetItemInput} from "aws-sdk/clients/dynamodb";
 import {Order} from "../model/Order";
+import {dynamoDbClient} from "../DynamoDbConfiguration";
 
-const dynamoDb = new DynamoDB({
-    "region": "ap-south-1"
-});
+const dynamoDb = dynamoDbClient();
 
 export class OrderRepository {
 
@@ -16,6 +14,6 @@ export class OrderRepository {
             }
         };
         const response = await dynamoDb.getItem(getItemInputOptions).promise();
-        return Order.from(response.Item);
+        return response.Item ? Order.from(response.Item) : null;
     }
 }
