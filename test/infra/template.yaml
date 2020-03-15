@@ -1,5 +1,30 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Resources:
+  OrdersFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: "order-service-function"
+      Runtime: "nodejs10.x"
+      Handler: "handler.ordersHandler"
+      Code:
+        S3Bucket: "serverless-order-service"
+        S3Key: "serverless-order-service.zip"
+      Role: !GetAtt "OrdersRole.Arn"
+
+  OrdersRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: "OrdersFunctionRole"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Action:
+              - "sts:AssumeRole"
+            Principal:
+              Service:
+                - "lambda.amazonaws.com"
+
   OrdersTable:
     Type: AWS::DynamoDB::Table
     Properties:

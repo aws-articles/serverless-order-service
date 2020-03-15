@@ -7,8 +7,9 @@
     "localstack:down": "docker-compose -f test/docker-compose.yml down",
     "localstack:up": "docker-compose -f test/docker-compose.yml up -d",
     "delay": "sleep 20",
-    "localstack:create-infra": "cd test/infra && ./deploy.sh",
-    "pretest": "npm run localstack:down && npm run localstack:up && npm run delay && npm run localstack:create-infra",
+    "localstack:create-infra": "cd test/infra && ./init.sh",
+    "archive": "cd dist/ && zip -r ../serverless-order-service.zip .",
+    "pretest": "npm run build && npm run archive && npm run localstack:down && npm run localstack:up && npm run delay && npm run localstack:create-infra",
     "test": "jest test/**",
     "build": "tsc"
   },
