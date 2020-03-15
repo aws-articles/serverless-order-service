@@ -1,10 +1,6 @@
-import {PutItemInput} from "aws-sdk/clients/dynamodb";
-
 import {OrderRepository} from "../../src/repository/OrderRepository";
 import {Order} from "../../src/model/Order";
-import {dynamoDbClient} from "../../src/DynamoDbConfiguration";
-
-const dynamoDb = dynamoDbClient();
+import {OrderRepositoryFixture} from "../fixture/OrderRepositoryFixture";
 
 test("should return an order given there is AN order for the provided order id", async () => {
     const orderId = "order-100";
@@ -21,20 +17,3 @@ test("should NOT return an order given there is NO order for the provided order 
 
     expect(order).toBeNull();
 });
-
-class OrderRepositoryFixture {
-    static async createAn(order: Order) {
-        const item: PutItemInput = {
-            TableName: "orders",
-            Item: {
-                "orderId": {
-                    S: order.orderId
-                },
-                "amount": {
-                    N: order.amount.toString()
-                }
-            }
-        };
-        await dynamoDb.putItem(item).promise()
-    }
-}
