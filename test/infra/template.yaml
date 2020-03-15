@@ -35,3 +35,45 @@ Resources:
       KeySchema:
         - AttributeName: "orderId"
           KeyType: "HASH"
+
+  OrdersApiGateway:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: "orders-api"
+
+  OrdersResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId: !GetAtt "OrdersApiGateway.RootResourceId"
+      PathPart: "orders"
+      RestApiId: !Ref "OrdersApiGateway"
+
+  OrderIdResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId: !Ref "OrdersResource"
+      PathPart: "{orderId}"
+      RestApiId: !Ref "OrdersApiGateway"
+
+  OrdersGetMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      HttpMethod: "GET"
+      AuthorizationType: "NONE"
+      RestApiId: !Ref "OrdersApiGateway"
+      ResourceId: !Ref "OrderIdResource"
+      Integration:
+        IntegrationHttpMethod: "POST"
+        Type: "AWS_PROXY"
+        Uri:
+          Fn::Join:
+            - ""
+            - - "arn:"
+              - "aws"
+              - ":apigateway:"
+              - Ref: AWS::Region
+              - :lambda:path/2015-03-31/functions/
+              - Fn::GetAtt:
+                  - OrdersFunction
+                  - Arn
+              - /invocations
