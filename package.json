@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "pretest": "docker-compose -f test/docker-compose.yml up -d",
+    "localstack:up": "docker-compose -f test/docker-compose.yml up -d",
+    "delay": "sleep 15",
+    "localstack:create-infra": "cd test/infra && ./deploy.sh",
+    "pretest": "npm run localstack:up && npm run delay && npm run localstack:create-infra",
     "test": "jest test/**",
     "build": "tsc"
   },

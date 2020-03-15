@@ -1,0 +1,12 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  OrdersTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: "orders"
+      AttributeDefinitions:
+        - AttributeName: "orderId"
+          AttributeType: "S"
+      KeySchema:
+        - AttributeName: "orderId"
+          KeyType: "HASH"
