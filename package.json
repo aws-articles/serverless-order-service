@@ -6,7 +6,7 @@
   "scripts": {
     "localstack:down": "docker-compose -f test/docker-compose.yml down",
     "localstack:up": "docker-compose -f test/docker-compose.yml up -d",
-    "delay": "sleep 15",
+    "delay": "sleep 20",
     "localstack:create-infra": "cd test/infra && ./deploy.sh",
     "pretest": "npm run localstack:down && npm run localstack:up && npm run delay && npm run localstack:create-infra",
     "test": "jest test/**",
