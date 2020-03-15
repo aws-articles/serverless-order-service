@@ -17,3 +17,22 @@ test("stack should contain a lambda function with node10 as runtime", () => {
         Runtime: Runtime.NODEJS_10_X.toString()
     })
 });
+
+test("stack should contain a lambda function with specified environment variable", () => {
+    const stack = new Stack();
+    const properties = new Node10LambdaFunctionProperties(
+        Code.fromAsset("../dist"),
+        "handler.ordersHandler",
+        "order-service-function",
+        {"env": "dev"});
+
+    new Node10LambdaFunction(stack, properties);
+
+    expect(stack).toHaveResource("AWS::Lambda::Function", {
+        Environment: {
+            Variables: {
+                "env": "dev"
+            }
+        }
+    })
+});

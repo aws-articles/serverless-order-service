@@ -27,7 +27,8 @@ export class OrderServiceInfraStack extends Stack {
         return new Node10LambdaFunction(this, new Node10LambdaFunctionProperties(
             Code.fromAsset("../dist"),
             "handler.ordersHandler",
-            "order-service-function")
+            "order-service-function",
+            {"ExecutionEnvironment": "dev"})
         );
     }
 
