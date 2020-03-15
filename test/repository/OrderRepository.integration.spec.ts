@@ -1,8 +1,8 @@
 import {PutItemInput} from "aws-sdk/clients/dynamodb";
 
-import {OrderRepository} from "../src/repository/OrderRepository";
-import {Order} from "../src/model/Order";
-import {dynamoDbClient} from "../src/DynamoDbConfiguration";
+import {OrderRepository} from "../../src/repository/OrderRepository";
+import {Order} from "../../src/model/Order";
+import {dynamoDbClient} from "../../src/DynamoDbConfiguration";
 
 const dynamoDb = dynamoDbClient();
 
