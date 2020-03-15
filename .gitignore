@@ -2,3 +2,7 @@ node_modules
 .idea
 serverless-order-service.iml
 dist
+serverless-order-service.zip
+test/infra/rest_api_id
+infra/cdk.context.json
+infra/test/__snapshots__
