@@ -1,0 +1,15 @@
+version: "2.1"
+services:
+  localstack:
+    image: localstack/localstack:0.10.7
+    ports:
+      - "4567-4599:4567-4599"
+      - "${PORT_WEB_UI-8080}:${PORT_WEB_UI-8080}"
+    environment:
+      - SERVICES=${SERVICES- }
+      - DEBUG=1
+      - DATA_DIR=${DATA_DIR- }
+      - PORT_WEB_UI=${PORT_WEB_UI- }
+      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR- }
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"

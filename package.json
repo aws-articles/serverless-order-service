@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "pretest": "docker-compose -f test/docker-compose.yml up -d",
     "test": "jest test/**",
     "build": "tsc"
   },
