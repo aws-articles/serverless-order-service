@@ -9,9 +9,10 @@ const isExecutionEnvironmentLocal = () => executionEnvironment() === "local";
 
 export const dynamoDbClient = () => {
     if (isExecutionEnvironmentLocal()) {
+        const dynamoHost = process.env.LOCALSTACK_HOSTNAME || "localhost";
         return new DynamoDB({
             "region": "us-east-1",
-            "endpoint": "http://localhost:4569"
+            "endpoint":`http://${dynamoHost}:4569`
         });
     } else {
         return new DynamoDB({
