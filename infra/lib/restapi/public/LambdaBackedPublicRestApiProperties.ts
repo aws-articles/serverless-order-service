@@ -2,7 +2,7 @@ import {Node10LambdaFunction} from "../../function/Node10LambdaFunction";
 import {LambdaRestApiProps, MethodLoggingLevel} from "@aws-cdk/aws-apigateway";
 import {IFunction} from "@aws-cdk/aws-lambda";
 
-export class LambdaPublicRestApiProperties {
+export class LambdaBackedPublicRestApiProperties {
 
     constructor(readonly apiName: string,
                 private readonly stageName: string,

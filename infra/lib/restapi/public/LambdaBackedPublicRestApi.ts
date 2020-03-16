@@ -1,12 +1,12 @@
 import {LambdaRestApi, Resource} from "@aws-cdk/aws-apigateway";
 import {Construct} from "@aws-cdk/core";
-import {LambdaPublicRestApiProperties} from "./LambdaPublicRestApiProperties";
+import {LambdaBackedPublicRestApiProperties} from "./LambdaBackedPublicRestApiProperties";
 import {HttpMethod} from "./HttpMethod";
 import {IllegalArgumentException} from "../../exception/IllegalArgumentException";
 
 export class LambdaBackedPublicRestApi extends LambdaRestApi {
 
-    constructor(scope: Construct, properties: LambdaPublicRestApiProperties) {
+    constructor(scope: Construct, properties: LambdaBackedPublicRestApiProperties) {
         super(scope, properties.apiName, properties.toLambdaRestApiProps());
     }
 

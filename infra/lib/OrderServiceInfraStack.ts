@@ -7,7 +7,7 @@ import {DynamoTable} from "./dynamodb/DynamoTable";
 import {DynamoTableProperties} from "./dynamodb/DynamoTableProperties";
 import {PrimaryKey} from "./dynamodb/PrimaryKey";
 import {PartitionKey} from "./dynamodb/PartitionKey";
-import {LambdaPublicRestApiProperties} from "./restapi/public/LambdaPublicRestApiProperties";
+import {LambdaBackedPublicRestApiProperties} from "./restapi/public/LambdaBackedPublicRestApiProperties";
 import {LambdaBackedPublicRestApi} from "./restapi/public/LambdaBackedPublicRestApi";
 import {HttpMethod} from "./restapi/public/HttpMethod";
 
@@ -44,7 +44,7 @@ export class OrderServiceInfraStack extends Stack {
     }
 
     private lambdaBackedPublicRestApi(lambda: Node10LambdaFunction) {
-        return new LambdaBackedPublicRestApi(this, new LambdaPublicRestApiProperties(
+        return new LambdaBackedPublicRestApi(this, new LambdaBackedPublicRestApiProperties(
             "orders-api",
             "dev",
             lambda

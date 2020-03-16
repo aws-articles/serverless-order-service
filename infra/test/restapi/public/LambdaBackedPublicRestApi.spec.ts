@@ -1,6 +1,6 @@
 import {LambdaBackedPublicRestApi} from "../../../lib/restapi/public/LambdaBackedPublicRestApi";
 import {Stack} from "@aws-cdk/core";
-import {LambdaPublicRestApiProperties} from "../../../lib/restapi/public/LambdaPublicRestApiProperties";
+import {LambdaBackedPublicRestApiProperties} from "../../../lib/restapi/public/LambdaBackedPublicRestApiProperties";
 import {Node10LambdaFunctionProperties} from "../../../lib/function/Node10LambdaFunctionProperties";
 import {Code} from "@aws-cdk/aws-lambda";
 import {Node10LambdaFunction} from "../../../lib/function/Node10LambdaFunction";
@@ -21,7 +21,7 @@ test("stack should contain a public api with a name", () => {
             "handler.ordersHandler",
             "order-service-function"));
 
-    const properties = new LambdaPublicRestApiProperties(
+    const properties = new LambdaBackedPublicRestApiProperties(
         "orders-api",
         "dev",
         node10LambdaFunction
@@ -44,7 +44,7 @@ test("stack should contain a public api with stage name", () => {
             "handler.ordersHandler",
             "order-service-function"));
 
-    const properties = new LambdaPublicRestApiProperties(
+    const properties = new LambdaBackedPublicRestApiProperties(
         "orders-api",
         "dev",
         node10LambdaFunction
@@ -67,7 +67,7 @@ test("stack should contain a public api with a resource", () => {
             "handler.ordersHandler",
             "order-service-function"));
 
-    const properties = new LambdaPublicRestApiProperties(
+    const properties = new LambdaBackedPublicRestApiProperties(
         "orders-api",
         "dev",
         node10LambdaFunction
@@ -92,7 +92,7 @@ test("stack should contain a public api with an http method added to the resourc
             "handler.ordersHandler",
             "order-service-function"));
 
-    const properties = new LambdaPublicRestApiProperties(
+    const properties = new LambdaBackedPublicRestApiProperties(
         "orders-api",
         "dev",
         node10LambdaFunction
