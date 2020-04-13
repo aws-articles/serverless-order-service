@@ -1,6 +1,6 @@
 import {OrderRequest} from "../model/OrderRequest";
 import {OrderService} from "../service/OrderService";
-import {HttpStatus, Response} from "../model/Response";
+import {Response} from "../model/Response";
 import {Order} from "../model/Order";
 
 export class OrderController {
@@ -14,7 +14,7 @@ export class OrderController {
         console.log(`Recevied a request with order id ${orderRequest.orderId()}`);
         if (orderRequest.isAGetOrder()) {
             const order = await this.findAnOrderBy(orderRequest.orderId());
-            return Response.ok<Order>(HttpStatus.OK, order)
+            return Response.ok<Order>(order)
         }
         return Response.notFound()
     }

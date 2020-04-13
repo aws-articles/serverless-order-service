@@ -2,8 +2,8 @@ export class Response<T> {
     private constructor(readonly status: HttpStatus, readonly body?: T) {
     }
 
-    static ok<T>(status: HttpStatus, body?: T) {
-        return new Response(status, body);
+    static ok<T>(body?: T) {
+        return new Response(HttpStatus.OK, body);
     }
 
     static notFound() {
