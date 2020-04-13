@@ -14,6 +14,14 @@ test("should return Ok as the response status given a request to find an order b
     expect(response.status).toEqual(HttpStatus.OK);
 });
 
+test("should return Not Found as the response status given no order exists for the order by id", async () => {
+    sinon.stub(OrderService.prototype, "findAnOrderBy").callsFake(() => null);
+
+    const response = await new OrderController().handle(orderRequest("id-100", "/orders/id-100"));
+
+    expect(response.status).toEqual(HttpStatus.NOT_FOUND);
+});
+
 test("should return Not Found as the response status given a request is not for find an order by id", async () => {
     const response = await new OrderController().handle(orderRequest("id-100", "/test/id-100"));
 

@@ -14,7 +14,7 @@ export class OrderController {
         console.log(`Recevied a request with order id ${orderRequest.orderId()}`);
         if (orderRequest.isAGetOrder()) {
             const order = await this.findAnOrderBy(orderRequest.orderId());
-            return Response.ok<Order>(order)
+            return order === null ? Response.notFound() : Response.ok<Order>(order);
         }
         return Response.notFound()
     }
