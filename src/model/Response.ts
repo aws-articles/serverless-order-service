@@ -2,7 +2,7 @@ export class Response<T> {
     private constructor(readonly status: HttpStatus, readonly body?: T) {
     }
 
-    static ok<T>(body?: T) {
+    static ok<T>(body: T) {
         return new Response(HttpStatus.OK, body);
     }
 

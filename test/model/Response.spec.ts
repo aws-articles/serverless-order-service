@@ -12,8 +12,8 @@ it("should return an object with body and status code", () => {
 });
 
 it("should return an object with only status code", () => {
-    const response = Response.ok();
+    const response = Response.notFound();
     expect(response.get()).toEqual({
-        "statusCode": HttpStatus.OK
+        "statusCode": HttpStatus.NOT_FOUND
     })
 });
